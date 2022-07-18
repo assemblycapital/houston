@@ -69,7 +69,25 @@
       :: :: ::
           %make-moon
       =/  mun  (bar-moon:houston bowl ~)
-      ::  :: ^ TODO specify optional moon patp from act
+      ?~  mun
+        `this
+      =/  mon  u.mun
+      =.  mons.state
+        mon^mons.state
+      ::
+      :_  this
+      :~
+        (jael-moon:houston mon)
+        (give-mons mons.state)
+      ==
+          %make-my-moon
+      :: TODO this is mostly just duplicated %make-moon
+      :: this code should be cleaned up
+      :: i just dont wanna deal with parsing a (unit @p) from json
+      =/  mon=(unit mon)
+        (get-mon:hc who.act mons.state)
+      ?.  =(~ mon)  !!
+      =/  mun  (bar-moon:houston bowl [~ who.act])
       ?~  mun
         `this
       =/  mon  u.mun
@@ -85,7 +103,7 @@
           %rekey-moon
       :: get mon
       =/  =mon
-        (get-mon:hc who.act mons.state)
+        (got-mon:hc who.act mons.state)
       :: generate mon
       =.  mon
         (bar-moon-cycle-keys:houston bowl mon)
@@ -103,7 +121,7 @@
       =/  =rift
         (bar-moon-breach:houston bowl who.act)
       =/  =mon
-        (get-mon:hc who.act mons.state)
+        (got-mon:hc who.act mons.state)
       =.  rif.mon  rift
       =.  mons.state
         (set-mon mon mons.state)
@@ -127,7 +145,7 @@
       :: :: ::
           %add-tag
       =/  =mon
-        (get-mon:hc who.act mons.state)
+        (got-mon:hc who.act mons.state)
       =/  fund  (find ~[tag.act] tag.mon)
       ?~  fund
         :: only add tag if doesn't exist already
@@ -145,7 +163,7 @@
       :: :: ::
           %del-tag
       =/  =mon
-        (get-mon:hc who.act mons.state)
+        (got-mon:hc who.act mons.state)
       =/  fund  (find ~[tag.act] tag.mon)
       ?~  fund  !!
       =.  tag.mon  (oust [u.fund 1] tag.mon)
@@ -195,12 +213,18 @@
     mon
 ++  get-mon
   |=  [who=@p mons=(list mon)]
-  ^-  mon
+  ^-  (unit mon)
   |-
-  ?~  mons  !!
+  ?~  mons  ~
   ?:  =(who who.i.mons)
-    i.mons
+    [~ i.mons]
   $(mons t.mons)
+++  got-mon
+  |=  [who=@p mons=(list mon)]
+  =/  mon=(unit mon)
+    (get-mon who mons)
+  ?~  mon  !!
+  u.mon
 ++  give-mons
   |=  mons=(list mon)
   =/  upd=update  [%moons mons]

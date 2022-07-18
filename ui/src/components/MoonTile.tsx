@@ -156,10 +156,10 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
           <div className="inline-block">
             <button className="border-2 border-gray-400 bg-white hover:bg-blue-700 hover:text-white font-bold mr-2 py-1 px-2 rounded"
                     onClick={breachMoon}
-              >breach</button>
+              >|moon-breach</button>
             <button className="border-2 border-gray-400 bg-white hover:bg-red-700 hover:text-white font-bold mr-2 py-1 px-2 rounded"
                     onClick={rekeyMoon}
-              >rekey</button>
+              >|moon-cycle-keys</button>
           </div>
 
           {/* new tag input */}

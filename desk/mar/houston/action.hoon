@@ -13,8 +13,8 @@
       %-  of:dejs
       :~
         [%show ul:dejs]
-::        [%make-moon [~ (se:dejs %p)]]  :: TODO optional choice of patp
         [%make-moon ul:dejs]
+        [%make-my-moon (se:dejs %p)]
         [%rekey-moon (se:dejs %p)]
         [%breach-moon (se:dejs %p)]
         [%forget-moon (se:dejs %p)]

@@ -17,6 +17,7 @@
     :: print state
     [%show ~]
     [%make-moon ~]
+    [%make-my-moon who=@p]
     [%rekey-moon who=@p]
     [%breach-moon who=@p]
     [%forget-moon who=@p]

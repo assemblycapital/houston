@@ -1,7 +1,8 @@
 :~  title+'houston'
-    info+'🌝🌚🌝🌚🌝🌚🌝🌚🌝🌚'
-    color+0x2e.4347
+    info+'🌝🌚🌝..moon manager..🌝🌚🌝'
+    color+0x34.394a
     glob-http+['https://bootstrap.urbit.org/glob-0v5.hurm4.ejod5.ngg9h.iub9i.n1j7o.glob' 0v5.hurm4.ejod5.ngg9h.iub9i.n1j7o]
+    image+'https://wigwam.vip/houston.png'
     base+'houston'
     version+[0 0 1]
     website+'https://github.com'
