@@ -10,7 +10,7 @@
   rif=@ud  :: rift
   sed=@ux  :: precomputed seed
   dat=@da  :: creation date
-  tag=(list @tas)  :: TODO list of tags
+  tag=(list @tas)  :: list of custom tags
   ==
 +$  action
   $%
@@ -21,6 +21,7 @@
     [%rekey-moon who=@p]
     [%breach-moon who=@p]
     [%forget-moon who=@p]
+    [%import-moon who=@p]
     [%add-tag who=@p tag=@tas]
     [%del-tag who=@p tag=@tas]
   ==

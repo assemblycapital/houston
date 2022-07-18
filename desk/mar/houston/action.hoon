@@ -15,6 +15,7 @@
         [%show ul:dejs]
         [%make-moon ul:dejs]
         [%make-my-moon (se:dejs %p)]
+        [%import-moon (se:dejs %p)]
         [%rekey-moon (se:dejs %p)]
         [%breach-moon (se:dejs %p)]
         [%forget-moon (se:dejs %p)]

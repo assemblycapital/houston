@@ -143,6 +143,22 @@
         (give-mons mons)
         ==
       :: :: ::
+          %import-moon
+      =/  mun=(unit mon)
+        (get-mon:hc who.act mons.state)
+      ?.  =(~ mun)  !!
+      =|  =mon
+      =:  who.mon  who.act
+          dat.mon  now.bowl
+          tag.mon  [%imported ~]
+        ==
+      =.  mons.state
+        [mon mons.state]
+      :_  this
+        :~
+        (give-mons mons)
+        ==
+      :: :: ::
           %add-tag
       =/  =mon
         (got-mon:hc who.act mons.state)

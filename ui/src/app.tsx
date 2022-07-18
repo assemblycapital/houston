@@ -55,6 +55,7 @@ export function App() {
       };
 
   function makeMoon() {
+
     const patp = document.getElementById('patp-input')! as HTMLInputElement;
     if (patp.value != "") {
       makeSpecificMoon()
@@ -68,24 +69,34 @@ export function App() {
     }
     };
 
-  function handleInputPress(e : KeyboardEvent<HTMLInputElement>) {
-    if (e.which == 13) {
-      // enter keypress
-      makeSpecificMoon();
-    }
-  }
-  function makeSpecificMoon() {
+  function sanitizeMoonInput() {
     const patp = document.getElementById('patp-input')! as HTMLInputElement;
 
     if (!urbitOb.isValidPatp(patp.value)) {
       alert("invalid patp");
+      return false;
     } else if (urbitOb.clan(patp.value) != "moon") {
       alert("not a moon");
+      return false;
     } else if (urbitOb.sein(patp.value) != "~"+window.ship) {
-      console.log(urbitOb.sein(patp.value));
-      console.log(window.ship);
       alert("not your moon");
+      return false;
     } else {
+      return true;
+    }
+  }
+
+  function makeSpecificMoon() {
+    if (!sanitizeMoonInput()) return;
+
+
+
+    const patp = document.getElementById('patp-input')! as HTMLInputElement;
+
+    if(!window.confirm(`Are you sure you want to create ${patp.value}? If this moon already exists, its keys will be overwritten!`)){
+        return;
+    }
+
     urb.poke({
         app: 'houston',
         mark: 'houston-action',
@@ -93,7 +104,20 @@ export function App() {
       });
     patp.value = "";
     }
+
+  function importMoon() {
+    if (!sanitizeMoonInput()) return;
+
+    const patp = document.getElementById('patp-input')! as HTMLInputElement;
+
+    urb.poke({
+        app: 'houston',
+        mark: 'houston-action',
+        json: {'import-moon':patp.value}
+      });
+    patp.value = "";
   };
+
 
   return (
     <main className="flex justify-center h-screen"
@@ -103,17 +127,23 @@ export function App() {
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat'
                  }}>
-      <div className="bg-blue-100 space-y-6 py-20 lg:w-1/2 rounded my-3 px-4 bg-opacity-70 overflow-y-scroll"
+      <div className="bg-blue-100 space-y-6 lg:w-1/2 rounded my-3 px-4 bg-opacity-70 overflow-y-scroll"
            style={{backdropFilter: 'blur(36px)'}}>
-        <h1 className="text-3xl font-bold">houston moon manager</h1>
+        <h1 className="text-3xl font-bold pt-10 text-center">houston</h1>
+        <div className="text-center">
           <input id={"patp-input"} type="text"
             className="px-4 py-2 inline-block bg-white rounded border-gray-400 border-2 w-3/5 mb-2"
-            onKeyPress={handleInputPress}
             placeholder="~sampel-monmep-sampel-palnet"
           />
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-2 py-2 px-4 rounded"
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold ml-2 py-2 px-4 rounded"
                   onClick={makeMoon}
-            >|moon</button>
+            >create</button>
+
+          <button className="bg-green-600 hover:bg-green-700 text-white font-bold ml-2 py-2 px-4 rounded"
+                  onClick={importMoon}
+            >import</button>
+        </div>
+          <hr className="border-gray-500 border-2" />
           {moons.map(mon => (
               <MoonTile urb={urb}
                         moon={mon}

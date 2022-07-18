@@ -63,7 +63,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
   }
 
   function breachMoon() {
-      if(window.confirm(`Are you sure you want to BREACH ${moon.who}? This action is irreversable!`)){
+      if(window.confirm(`Are you sure you want to breach ${moon.who}? This action is irreversable!`)){
         urb.poke({
             app: 'houston',
             mark: 'houston-action',
@@ -73,7 +73,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
   };
 
   function rekeyMoon() {
-      if(window.confirm(`Are you sure you want to REKEY ${moon.who}? This action is irreversable!`)){
+      if(window.confirm(`Are you sure you want to rekey ${moon.who}? This action is irreversable!`)){
         urb.poke({
             app: 'houston',
             mark: 'houston-action',
@@ -83,7 +83,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
       };
 
   function forgetMoon() {
-      if(window.confirm(`Are you sure you want to FORGET ${moon.who}? This action is irreversable!`)){
+      if(window.confirm(`Are you sure you want to forget ${moon.who}? This action is irreversable!`)){
         urb.poke({
             app: 'houston',
             mark: 'houston-action',
@@ -117,7 +117,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
 
   return (
       <div key={moon.who}
-        className="overflow-scroll max-w-full bg-gray-100 hover:bg-gray-200 rounded p-3">
+        className="block overflow-scroll max-w-full bg-gray-100 hover:bg-gray-200 rounded p-3">
 
         <div onClick={handleSelect} className="align-middle mr-3 inline-block hover:cursor-pointer">
           {isSelect
@@ -149,17 +149,22 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
                 </div>
             ))}
             </div>
+            <br/>
         {isSelect &&
         /* expanded moon info */
         <div className="inline-block mt-1">
           {/* buttons */}
           <div className="inline-block">
-            <button className="border-2 border-gray-400 bg-white hover:bg-blue-700 hover:text-white font-bold mr-2 py-1 px-2 rounded"
+            <button className="border-2 border-gray-400 bg-white hover:bg-blue-100 font-bold mr-2 py-1 px-2 rounded"
                     onClick={breachMoon}
-              >|moon-breach</button>
-            <button className="border-2 border-gray-400 bg-white hover:bg-red-700 hover:text-white font-bold mr-2 py-1 px-2 rounded"
+              >breach</button>
+            <button className="border-2 border-gray-400 bg-white hover:bg-purple-100 font-bold mr-2 py-1 px-2 rounded"
                     onClick={rekeyMoon}
-              >|moon-cycle-keys</button>
+              >cycle keys</button>
+            {/* forget moon */}
+            <button className="border-2 border-gray-400 bg-white hover:bg-red-100 font-bold mr-2 py-1 px-2 rounded"
+                    onClick={forgetMoon}
+              >forget</button>
           </div>
 
           {/* new tag input */}
@@ -183,10 +188,6 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
           <table>
             <tbody>
             <tr>
-              <td><strong>name:</strong></td>
-              <td>{moon.who}</td>
-            </tr>
-            <tr>
               <td><strong>public:</strong></td>
               <td>{moon.pub}</td>
             </tr>
@@ -209,10 +210,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
             </tbody>
           </table>
 
-          {/* forget moon */}
-          <button className="border-2 text-gray-400 border-gray-400 hover:bg-red-700 hover:text-white font-bold mt-1 py-1 px-2 rounded"
-                  onClick={forgetMoon}
-            >forget</button>
+
         </div>
         }
       </div>
