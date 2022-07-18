@@ -89,8 +89,6 @@ export function App() {
   function makeSpecificMoon() {
     if (!sanitizeMoonInput()) return;
 
-
-
     const patp = document.getElementById('patp-input')! as HTMLInputElement;
 
     if(!window.confirm(`Are you sure you want to create ${patp.value}? If this moon already exists, its keys will be overwritten!`)){
