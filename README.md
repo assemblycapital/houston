@@ -22,7 +22,7 @@ the ```create``` button spawns a new moon. this maps to |moon.
 it can optionally be given a @p. if not, it will create a random moon.
 
 each moon has a ```breach``` button and a ```cycle keys``` button. these correspond with |moon-breach and |moon-cycle-keys respectively.
-moons also have a ```forget``` button. this simply removes the moon from houstons agent state. it doesnt effect the actual moon.
+moons also have a ```forget``` button. this simply removes the moon from houstons agent state. it doesnt affect the actual moon.
 
 users can ```import``` a moon, which just adds the moon @p into houston without any metadata.
 this allows existing moons to be tracked and tagged as part of the same database.
