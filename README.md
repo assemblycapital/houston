@@ -14,7 +14,7 @@ the private key / seed is needed for relaunching a moon after it's breached.
 
 ## Using The Frontend
 the ```create``` button spawns a new moon. this maps to |moon.
-it can optionally be given a @p for the moon. if a @p is not given, it will create a random moon.
+it can optionally be given a @p. if not, it will create a random moon.
 
 each moon has a ```breach``` and a ```cycle keys``` button. these correspond with |moon-breach and |moon-cycle-keys respectively.
 moons also have a ```forget``` button. this simply removes the moon from houstons agent state. it doesnt effect the actual moon.
