@@ -4,7 +4,7 @@ urbit moon dashboard
 houston exposes an api for your moon utilities:
  * |moon
  * |moon-breach
- * |moon-set-keys
+ * |moon-cycle-keys
 
 houston stores the moons you have spawned, and some metadata about them.
 as of july 2022, this data is only stored in jael and can not be scryed.
