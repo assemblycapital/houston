@@ -10,7 +10,7 @@ houston only accepts pokes from our.bowl
 
 jael is still the source of truth for each moons pubkey, life, and rift.
 when a moon is created or rekeyed through houston, houston keeps a copy of the private key.
-the private key / seed is needed for launching the moon for the first time or after a breach.
+the private key / seed is needed when launching the moon for the first time or after a breach.
 
 moons can be initially booted using the following command:
 
