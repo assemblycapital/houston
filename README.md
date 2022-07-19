@@ -21,7 +21,7 @@ moons can be initially booted using the following command:
 the ```create``` button spawns a new moon. this maps to |moon.
 it can optionally be given a @p. if not, it will create a random moon.
 
-each moon has a ```breach``` and a ```cycle keys``` button. these correspond with |moon-breach and |moon-cycle-keys respectively.
+each moon has a ```breach``` button and a ```cycle keys``` button. these correspond with |moon-breach and |moon-cycle-keys respectively.
 moons also have a ```forget``` button. this simply removes the moon from houstons agent state. it doesnt effect the actual moon.
 
 users can ```import``` a moon, which just adds the moon @p into houston without any metadata.
@@ -33,6 +33,11 @@ moons can be given ```tags``` which are just arbitrary text. this should be usef
  * what services the moon is responsible for
  * what machine the moon is running on
  * who the moon belongs to
+
+## Using The Poke API
+houston can be poked by other apps to create / breach / rekey moons. previously, this was only possible through dojo.
+for a spec of the poke API, refer to the source code.
+
 
 
 ## Installing the Desk From Source
