@@ -13,7 +13,8 @@ when a moon is created or rekeyed through houston, houston keeps a copy of the p
 the private key / seed is needed for launching the moon for the first time or after a breach.
 
 moons can be initially booted using the following command:
-```$ ./urbit -w <moon-name> -G <seed> -c <pier-name>```
+
+```./urbit -w <moon-name> -G <seed> -c <pier-name>```
 
 
 ## Using The Frontend
