@@ -10,7 +10,11 @@ houston only accepts pokes from our.bowl
 
 jael is still the source of truth for each moons pubkey, life, and rift.
 when a moon is created or rekeyed through houston, houston keeps a copy of the private key.
-the private key / seed is needed for relaunching a moon after it's breached.
+the private key / seed is needed for launching the moon for the first time or after a breach.
+
+moons can be initially booted using the following command:
+```$ ./urbit -w <moon-name> -G <seed> -c <pier-name>```
+
 
 ## Using The Frontend
 the ```create``` button spawns a new moon. this maps to |moon.
