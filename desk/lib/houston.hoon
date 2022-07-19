@@ -27,7 +27,7 @@
   =|  =mon
   =/  cub  (pit:nu:crub:crypto 512 (shaz (jam who.mun life eny.bowl)))
   =/  =seed:jael
-    [who.mon life sec:ex:cub ~]
+    [who.mun life sec:ex:cub ~]
   =:  who.mon  who.mun
       pub.mon  pub:ex:cub
       sec.mon  sec:ex:cub
