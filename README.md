@@ -1,17 +1,36 @@
 # houston
 urbit moon dashboard
 
-houston exposes an api for your moon utilities:
+houston exposes a poke api for your moon utilities:
  * |moon
  * |moon-breach
  * |moon-cycle-keys
+ 
+houston only accepts pokes from our.bowl
 
-houston stores the moons you have spawned, and some metadata about them.
+jael is still the source of truth for each moons pubkey, life, and rift.
+when a moon is created or rekeyed through houston, houston keeps a copy of the private key.
+the private key / seed is needed for relaunching a moon after it's breached.
 
-jael only stores the moons public key, houston also stores a copy of the private key in case its ever needed.
+## Using The Frontend
+the ```create``` button spawns a new moon. this maps to |moon.
+it can optionally be given a @p for the moon. if a @p is not given, it will create a random moon.
+
+each moon has a ```breach``` and a ```cycle keys``` button. these correspond with |moon-breach and |moon-cycle-keys respectively.
+moons also have a ```forget``` button. this simply removes the moon from houstons agent state. it doesnt effect the actual moon.
+
+users can ```import``` a moon, which just adds the moon @p into houston without any metadata.
+this allows existing moons to be tracked and tagged as part of the same database.
+imported moons can still be breached and can still have their keys reset from the houston UI.
+when an imported moon has its keys reset, the new data will be stored in houston.
+
+moons can be given ```tags``` which are just arbitrary text. this should be useful to track:
+ * what services the moon is responsible for
+ * what machine the moon is running on
+ * who the moon belongs to
 
 
-### Installing the Desk
+## Installing the Desk From Source
 in dojo:
 ```
 |merge %houston our %base
