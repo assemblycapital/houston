@@ -7,7 +7,6 @@ houston exposes an api for your moon utilities:
  * |moon-cycle-keys
 
 houston stores the moons you have spawned, and some metadata about them.
-as of july 2022, this data is only stored in jael and can not be scryed.
 
 jael only stores the moons public key, houston also stores a copy of the private key in case its ever needed.
 
