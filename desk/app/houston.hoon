@@ -45,6 +45,8 @@
   |=  =path
   ^-  (unit (unit cage))
   ?+    path  (on-peek:def path)
+    :: TODO scry by @p
+    :: TODO scry by tag
     [%x %mons ~]
       ``noun+!>(mons)
   ==
@@ -243,7 +245,9 @@
   u.mon
 ++  give-mons
   |=  mons=(list mon)
-  =/  upd=update  [%moons mons]
+  =/  upd=update
+    :-  %moons
+    (scag 100 mons)
   (fact:agentio houston-update+!>(upd) ~[/moons])
 -- 
 

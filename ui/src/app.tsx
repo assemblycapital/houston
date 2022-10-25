@@ -125,23 +125,29 @@ export function App() {
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat'
                  }}>
-      <div className="bg-blue-100 space-y-6 lg:w-1/2 rounded my-3 px-4 bg-opacity-70 overflow-y-scroll"
+      <div className="bg-blue-100 lg:w-1/2 rounded my-3 px-4 bg-opacity-70 overflow-y-scroll"
            style={{backdropFilter: 'blur(36px)'}}>
-        <h1 className="text-3xl font-bold pt-10 text-center">houston</h1>
-        <div className="text-center">
-          <input id={"patp-input"} type="text"
-            className="px-4 py-2 inline-block bg-white rounded border-gray-400 border-2 w-3/5 mb-2"
-            placeholder="~sampel-monmep-sampel-palnet"
-          />
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold ml-2 py-2 px-4 rounded"
-                  onClick={makeMoon}
-            >create</button>
+        <h1 className="text-3xl font-bold my-5 text-center">houston</h1>
 
-          <button className="bg-green-600 hover:bg-green-700 text-white font-bold ml-2 py-2 px-4 rounded"
-                  onClick={importMoon}
-            >import</button>
+        <div className="flex flex-row mb-2">
+          <div className="flex-1">
+            <input id={"patp-input"} type="text"
+              className="w-full px-4 py-2 inline-block bg-white rounded border-gray-400"
+              placeholder="~sampel-monmep-sampel-palnet"
+            />
+          </div>
+          <div
+            className="flex-end"
+          >
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold ml-2 py-2 px-4 rounded"
+                    onClick={makeMoon}
+              >create</button>
+
+            <button className="bg-green-600 hover:bg-green-700 text-white font-bold ml-2 py-2 px-4 rounded"
+                    onClick={importMoon}
+              >import</button>
+          </div>
         </div>
-          <hr className="border-gray-500 border-2" />
           {moons.map(mon => (
               <MoonTile urb={urb}
                         moon={mon}
