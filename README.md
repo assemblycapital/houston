@@ -32,7 +32,7 @@ when an imported moon has its keys reset, the new data will be stored in houston
 moons can be given ```tags``` which are just arbitrary text. this should be useful to track:
  * what services the moon is responsible for
  * what machine the moon is running on
- * who the moon belongs to
+ * who operates the moon
 
 ## Using The Poke API
 houston can be poked by other apps to create / breach / rekey moons. previously, this was only possible through dojo.
@@ -52,7 +52,8 @@ cd <mounted_houston_desk>
 rm -r ./*
 cp -rL <(urbit)/pkg/base-dev>/* .
 cp -rL <(urbit)/pkg/garden-dev>/* .
-cp -r <(this_repo)/desk/* .
+cd <this_repo>/desk/
+./install.sh -w <mounted_houston_desk>
 ```
 in dojo:
 ```
@@ -91,12 +92,4 @@ To deploy, run `npm run build` in the `ui` directory which will bundle all the c
     glob-http+['https://bootstrap.urbit.org/glob-0v5.fdf99.nph65.qecq3.ncpjn.q13mb.glob' 0v5.fdf99.nph65.qecq3.ncpjn.q13mb]
 ```
 
-11. This can now be safely committed and deployed.
-
-[react]: https://reactjs.org/
-[typescript]: https://www.typescriptlang.org/
-[tailwind css]: https://tailwindcss.com/
-[vite]: https://vitejs.dev/
-
-this repo created using urbit/create-landscape-app
 
