@@ -45,10 +45,18 @@ moons can be given `tags` which are just arbitrary text. this should be useful t
 - what machine the moon is running on
 - who operates the moon
 
-## Using The Poke API
+## Using The API
 
 houston can be poked by other apps to create / breach / rekey moons. previously, this was only possible through dojo.
 for a spec of the poke API, refer to the source code.
+
+to get a moons data from houston:
+
+```hoon
++houston!get ~sampel-sampel-palnet
+```
+
+this is a generator that wraps the scry endpoint
 
 ## Installing the Desk From Source
 

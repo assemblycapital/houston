@@ -45,8 +45,14 @@
   |=  =path
   ^-  (unit (unit cage))
   ?+    path  (on-peek:def path)
-    :: TODO scry by @p
     :: TODO scry by tag
+    :: scry by @p
+    [%x %get @ ~]
+      =/  who=ship
+        (slav %p i.t.t.path)
+      =*  gut  (get-mon who mons)
+      ``noun+!>(gut)
+    :: get all
     [%x %mons ~]
       ``noun+!>(mons)
   ==
