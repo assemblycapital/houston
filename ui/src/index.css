@@ -6,5 +6,17 @@
     display: none;
 } */
 input {
-    outline:none;
+  outline:none;
 }
+.unselectable {
+/* no text selection */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+/* .selectable {
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+} */

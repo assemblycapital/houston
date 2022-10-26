@@ -151,7 +151,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
 
       <div>
         <div className="inline">
-          <div onClick={handleSelect} className="align-middle mr-3 inline-block hover:cursor-pointer">
+          <div onClick={handleSelect} className="align-middle mr-3 inline-block hover:cursor-pointer unselectable">
             {isSelect
             ? <ChevronDown />
             : <ChevronUp />
@@ -168,7 +168,7 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
             {moon.tag.map((tag:string) => (
               <div
                 key={tag}
-                className="hover:bg-white text-gray-600 border-gray-400 \
+                className="text-gray-600 border-gray-400 \
                            border pl-1 pr-2 mr-1 my-0 py-0 inline-block"
               >
                 {/* x / delete icon */}
