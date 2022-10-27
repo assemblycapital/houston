@@ -66,9 +66,22 @@
     ::
     :: :: houston
       %houston-action
-    ?.  =(src.bowl our.bowl)
-      `this
     =/  act  !<(action vase)
+    ::
+    :: pokes only allowed by
+    ?.    :: our
+      ?|  =(src.bowl our.bowl)
+          :: or our moon self-breaching
+          ?+  -.act  |
+              %breach-moon
+            ?&
+            =(who.act src.bowl)
+            (team:hc src.bowl)
+            ==
+          ==
+      ==
+      `this
+    ::
     ?-  -.act
       :: :: ::
           %show
@@ -255,5 +268,12 @@
     :-  %moons
     (scag 100 mons)
   (fact:agentio houston-update+!>(upd) ~[/moons])
+++  team
+  |=  who=@p
+  ^-  ?
+  ?&
+    =(%earl (clan:title who))
+    =(our.bowl (sein:title our.bowl now.bowl who))
+  ==
 -- 
 
