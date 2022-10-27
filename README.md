@@ -56,7 +56,17 @@ to get a moons data from houston:
 +houston!get ~sampel-sampel-palnet
 ```
 
-this is a generator that wraps the scry endpoint
+this is a generator that wraps a scry endpoint.
+
+more cli tools for houston
+
+```hoon
+:houston|create
+:houston|create ~sampel-sampel-palnet
+:houston|tag ~sampel-sampel-palnet 'best moon ever'
+:houston|rekey ~sampel-sampel-palnet
+:houston|breach ~sampel-sampel-palnet
+```
 
 ## Installing the Desk From Source
 
