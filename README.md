@@ -19,6 +19,8 @@ moons can be initially booted using the following command:
 `./urbit -w <moon-name> -G <seed>`
 or
 `/urbit -w sampel-sampel-palnet -G 0wm4W1E.ees11.MtSXj.-51oT.NN-7E.O1uch.2eM0g.2QhRf.KyiER.ke7cN.qynND.qAkrn.sJUOr.CkbEC.JRtiD.gqwz7.DDDYf.Q82M0.ecoac.ag000.1rwg1`
+or
+`./urbit -w sampel-sampel-palnet -k ./sampel-sampel-palnet.key`
 
 the next time you boot, just run:
 
