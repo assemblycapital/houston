@@ -45,6 +45,14 @@
   |=  =path
   ^-  (unit (unit cage))
   ?+    path  (on-peek:def path)
+    :: TODO scry by tag
+    :: scry by @p
+    [%x %get @ ~]
+      =/  who=ship
+        (slav %p i.t.t.path)
+      =*  gut  (get-mon who mons)
+      ``noun+!>(gut)
+    :: get all
     [%x %mons ~]
       ``noun+!>(mons)
   ==
@@ -58,9 +66,22 @@
     ::
     :: :: houston
       %houston-action
-    ?.  =(src.bowl our.bowl)
-      `this
     =/  act  !<(action vase)
+    ::
+    :: pokes only allowed by
+    ?.    :: our
+      ?|  =(src.bowl our.bowl)
+          :: or our moon self-breaching
+          ?+  -.act  |
+              %breach-moon
+            ?&
+            =(who.act src.bowl)
+            (team:hc src.bowl)
+            ==
+          ==
+      ==
+      `this
+    ::
     ?-  -.act
       :: :: ::
           %show
@@ -243,7 +264,16 @@
   u.mon
 ++  give-mons
   |=  mons=(list mon)
-  =/  upd=update  [%moons mons]
+  =/  upd=update
+    :-  %moons
+    (scag 100 mons)
   (fact:agentio houston-update+!>(upd) ~[/moons])
+++  team
+  |=  who=@p
+  ^-  ?
+  ?&
+    =(%earl (clan:title who))
+    =(our.bowl (sein:title our.bowl now.bowl who))
+  ==
 -- 
 

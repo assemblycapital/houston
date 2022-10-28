@@ -44,8 +44,9 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
     newTag.value = "";
   }
 
-  function handleKillTag(e: React.MouseEvent<SVGSVGElement>) {
-      const tag = e.target! as SVGSVGElement;
+  function handleKillTag(e: React.MouseEvent<HTMLDivElement>) {
+      const tag = e.currentTarget! as HTMLDivElement;
+      // console.log('killing tag', tag)
       urb.poke({
           app:  'houston',
           mark: 'houston-action',
@@ -115,101 +116,178 @@ export const MoonTile: React.FC<MoonTileProps> = ({urb, moon}) => {
     )
   }
 
+  const keyFile = function (patp:string, data:string) {
+ 
+    patp = patp.slice(1) // remove ~
+    
+    // Creating a Blob for having a csv file format
+    // and passing the data with type
+    const blob = new Blob([data], { type: 'text/key' });
+ 
+    // Creating an object for downloading url
+    const url = window.URL.createObjectURL(blob)
+ 
+    // Creating an anchor(a) tag of HTML
+    const a = document.createElement('a')
+ 
+    // Passing the blob downloading url
+    a.setAttribute('href', url)
+ 
+    // Setting the anchor tag attribute for downloading
+    // and passing the download file name
+    a.setAttribute('download', `${patp}.key`);
+ 
+    // Performing a download with click
+    a.click()
+}
+
+  function copyToClipboard(text:string) {
+    navigator.clipboard.writeText(text);
+  }
+
   return (
       <div key={moon.who}
-        className="block overflow-scroll max-w-full bg-gray-100 hover:bg-gray-200 rounded p-3">
+        className="block overflow-none max-w-full bg-gray-100 bg-opacity-80 hover:bg-opacity-100 mb-2 p-3">
 
-        <div onClick={handleSelect} className="align-middle mr-3 inline-block hover:cursor-pointer">
-          {isSelect
-          ? <ChevronDown />
-          : <ChevronUp />
-          }
+      <div>
+        <div className="inline">
+          <div onClick={handleSelect} className="align-middle mr-3 inline-block hover:cursor-pointer unselectable">
+            {isSelect
+            ? <ChevronDown />
+            : <ChevronUp />
+            }
+          </div>
+
+          <h2 className="inline-block font-bold font-mono cursor-default mr-4">
+            {moon.who}
+          </h2>
         </div>
 
-        <h2 className="inline-block font-bold font-mono">{moon.who}</h2>
-            <div className="inline-block ml-4">
-              {moon.tag.map((tag:string) => (
+        {moon.tag.length > 0 && 
+          <div className="inline-block">
+            {moon.tag.map((tag:string) => (
+              <div
+                key={tag}
+                className="text-gray-600 border-gray-400 \
+                           border pl-1 pr-2 mr-1 my-0 py-0 inline-block"
+              >
+                {/* x / delete icon */}
                 <div
-                  key={tag}
-                  className="hover:bg-white text-gray-600 border-gray-400 border-2 pl-1 pr-2 mr-1 my-0 py-0 rounded inline-block"  
+                  className="inline"
+                  onClick={handleKillTag}
+                  id={tag}
+                 >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3 mr-1 inline-block hover:cursor-pointer"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  strokeWidth="2"
+                 
                 >
-                  {/* x / delete icon */}
-                  <svg xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3 mr-1 inline-block hover:cursor-pointer"
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    strokeWidth="2"
-                    onClick={handleKillTag}
-                    id={tag}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                  <span>
-                    {tag}
-                  </span>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
                 </div>
-            ))}
-            </div>
-            <br/>
+
+                <span className='cursor-default'>
+                  {tag}
+                </span>
+              </div>
+          ))}
+          </div>
+        }
+
+        </div>
         {isSelect &&
         /* expanded moon info */
-        <div className="inline-block mt-1">
+        <div className="inline-block pt-2 mt-2 w-full text-sm border-t border-gray-400 text-gray-600">
+          
+         
           {/* buttons */}
-          <div className="inline-block">
-            <button className="border-2 border-gray-400 bg-white hover:bg-blue-100 font-bold mr-2 py-1 px-2 rounded"
+          <div className="inline-block mb-1">
+            {/* <button className="border-2 border-gray-400 hover:bg-blue-100 font-bold mr-2 py-1 px-2 "
                     onClick={breachMoon}
               >breach</button>
-            <button className="border-2 border-gray-400 bg-white hover:bg-purple-100 font-bold mr-2 py-1 px-2 rounded"
+            <button className="border-2 border-gray-400 hover:bg-purple-100 font-bold mr-2 py-1 px-2 "
+                    onClick={rekeyMoon}
+              >cycle keys</button>
+            <button className="border-2 border-gray-400 hover:bg-red-100 font-bold mr-2 py-1 px-2 "
+                    onClick={forgetMoon}
+              >forget</button> */}
+            <button className="underline font-bold mr-3 py-1 "
+                    onClick={breachMoon}
+              >breach</button>
+            <button className="underline font-bold mr-3 py-1"
                     onClick={rekeyMoon}
               >cycle keys</button>
             {/* forget moon */}
-            <button className="border-2 border-gray-400 bg-white hover:bg-red-100 font-bold mr-2 py-1 px-2 rounded"
+            <button className="underline font-bold mr-3 py-1"
                     onClick={forgetMoon}
               >forget</button>
           </div>
 
           {/* new tag input */}
-          <div className="inline-block rounded border-gray-400 border-2 mb-2">
-            <input id={moon.who+"-tag-input"} type="text"
-              onKeyPress={handleInputPress}
-              placeholder="(add tag here)"
-              className="bg-transparent pl-1 py-1 ml-1 rounded"/>
+          <div className="inline-block border-gray-400 border mb-1">
+
+              <input id={moon.who+"-tag-input"} type="text"
+                onKeyPress={handleInputPress}
+                placeholder="(add tag here)"
+                className="bg-transparent pl-1 py-1 ml-1 \
+                           disable-input-select"
+                
+                />
+
 
             {/* + / add tag icon */}
-            <svg xmlns="http://www.w3.org/2000/svg"
-              className="rounded hover:bg-blue-400 h-5 w-5 inline-block hover:cursor-pointer"
-              viewBox="0 0 20 20" fill="currentColor"
-              onClick={handleNewTag}
-            >
-              <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
-            </svg>
+              <span
+                className="h-5 w-4 inline-block hover:cursor-pointer text-gray-500"
+                onClick={handleNewTag}
+              >
+                +
+              </span>
+              {/* <svg xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 inline-block hover:cursor-pointer text-gray-500"
+                viewBox="0 0 20 20" fill="currentColor"
+                onClick={handleNewTag}
+              >
+                <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
+              </svg> */}
           </div>
 
-          {/* moon data */}
-          <table>
-            <tbody>
-            <tr>
-              <td><strong>public:</strong></td>
-              <td>{moon.pub}</td>
-            </tr>
-            <tr>
-              <td><strong>private:</strong></td>
-              <td>{moon.sec}</td>
-            </tr>
-            <tr>
-              <td><strong>seed:</strong></td>
-              <td>{moon.sed}</td>
-            </tr>
-            <tr>
-              <td><strong>spawned:</strong></td>
-              <td>
-                {
-                 new Date(moon.dat * 1000).toLocaleString('en-US')
-                }
-              </td>
-            </tr>
-            </tbody>
-          </table>
 
+          {/* moon data */}
+
+          <div
+            className="text-sm max-w-full"
+            
+          >
+
+            {/* <span className="mt-2 inline-block"
+            style={{
+              'maxWidth':'100%',
+              'overflowX':'scroll',
+              'wordWrap':'unset',
+              'whiteSpace':'nowrap',
+              'overflow':'-moz-hidden-unscrollable'
+            }}
+            >
+              {`./urbit -w ${moon.who.slice(1)} -G ${moon.sed}`}
+            </span> */}
+
+            <p
+              className='mt-1'
+              >
+              <span
+                className='hover:cursor-pointer underline text-blue-500 '
+                onClick={(e:any) => keyFile(moon.who, moon.sed)}
+              >
+                {`${moon.who.slice(1)}.key`}
+              </span>
+            </p>
+
+            <p className='mt-2 cursor-default'>
+            {new Date(moon.dat * 1000).toLocaleString('en-US')}
+            </p>
+
+          </div>
 
         </div>
         }
