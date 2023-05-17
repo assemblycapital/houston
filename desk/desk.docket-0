@@ -1,10 +1,10 @@
 :~  title+'houston'
     info+'Moon Management Dashboard'
     color+0x34.394a
-    glob-http+['https://bwyl.nyc3.digitaloceanspaces.com/houston/houston-0.0.2-0v6.85bdk.sdkdd.qmk0u.jm0tf.qlpni.glob' 0v6.85bdk.sdkdd.qmk0u.jm0tf.qlpni]
+    glob-http+['https://bwyl.nyc3.digitaloceanspaces.com/houston/houston-0.0.3-0v1.bonkr.iqthi.i3ur2.ckfrm.r3qjs.glob' 0v1.bonkr.iqthi.i3ur2.ckfrm.r3qjs]
     image+'https://wigwam.vip/houston.png'
     base+'houston'
-    version+[0 0 2]
+    version+[0 0 3]
     website+'https://github.com/assemblycapital/houston'
     license+''
 ==
